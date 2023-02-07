@@ -1,0 +1,42 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>Teste Com Json</title>
+</head>
+<body>
+  
+
+
+
+    <script>
+        var json = 
+    {
+        "alunos" : [
+                   {"nome" : "José","matricula" : "12345"},
+                   {"nome" : "Maria","matricula" : "252678"},
+                   {"nome" : "João","matricula" : "989766"}
+                ]
+    }
+
+     json.alunos.forEach(listar);
+     
+        
+     
+        
+    function listar(propriedade)
+    {
+        console.log(propriedade["nome"] + " - " + propriedade["matricula"]); 
+    }
+
+    console.table(json.alunos);// imprimira em tabela
+    </script>
+</body>
+
+
+
+
+
+
+
+
+</html>
