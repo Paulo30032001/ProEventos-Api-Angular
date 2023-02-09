@@ -34,6 +34,7 @@ namespace ProEventos.API
                  )
                  ;    //  ADICIONAMOS O CONTEXTO 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
@@ -55,6 +56,12 @@ namespace ProEventos.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(
+              x=>x.AllowAnyHeader() // dado de qualquer configuração de cabeçalho do meu header
+               .AllowAnyMethod() // vinda de qualquer metodo get,post ...
+               .AllowAnyOrigin() // de qualquer origem
+            );
 
             app.UseEndpoints(endpoints =>
             {
