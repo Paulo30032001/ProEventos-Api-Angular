@@ -11,8 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using ProEventos.API.Data;
+using ProEventos.Persistence.Contextos;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
+using ProEventos.Persistence;
 using Microsoft.EntityFrameworkCore;
+using ProEventos.Persistence.Contratos;
 namespace ProEventos.API
 {
     public class Startup
@@ -28,12 +32,25 @@ namespace ProEventos.API
         public void ConfigureServices(IServiceCollection services)
         {
             // UseSqlite=é um DbContextOptionsBuilder então temos criar alguem que recebe esse DbContextOptionsBuilder que no casso é o nosso DbContextOptions(ou DbContextOptionsBuilder tanto faz) ele vai determinar as nossas tabelas no banco 
-            services.AddDbContext<DataContext>( 
-                Options=>
-                 Options.UseSqlite(Configuration.GetConnectionString("ProEventos.APIContext")) // por enquanto vamos deixar sem conexão
+            services.AddDbContext<ProEventosContext>(
+                Options =>
+                 Options.UseMySQL(Configuration.GetConnectionString("ProEventos.APIContext")) // por enquanto vamos deixar sem conexão
                  )
                  ;    //  ADICIONAMOS O CONTEXTO 
-            services.AddControllers();
+
+            //PRIMEIRO INTERFACE DEPOIS A CLASSE QUE A IMPLEMENTA(CUMPRE O CONTRATO)
+            services.AddScoped<IEventosService, EventosService>();
+            services.AddScoped<IGeralPersistence, GeralPersistence>();  
+            services.AddScoped<IEventosPersistence, EventosPersistence>();  
+            services.AddControllers()
+            .AddNewtonsoftJson(
+                    //Configurações de Serialize(converão pra json)
+                                        // Quando for uma referencia que gerar um loop 
+               x=>x.SerializerSettings.ReferenceLoopHandling= 
+               Newtonsoft.Json.ReferenceLoopHandling.Ignore
+               //IGNORE
+            );
+            
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
@@ -51,6 +68,7 @@ namespace ProEventos.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProEventos.API v1"));
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -58,7 +76,7 @@ namespace ProEventos.API
             app.UseAuthorization();
 
             app.UseCors(
-              x=>x.AllowAnyHeader() // dado de qualquer configuração de cabeçalho do meu header
+              x => x.AllowAnyHeader() // dado de qualquer configuração de cabeçalho do meu header
                .AllowAnyMethod() // vinda de qualquer metodo get,post ...
                .AllowAnyOrigin() // de qualquer origem
             );

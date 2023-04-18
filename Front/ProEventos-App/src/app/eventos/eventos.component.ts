@@ -32,6 +32,8 @@ export class EventosComponent implements OnInit {
   {
     this._filtro_lista =  filtrado;
     this.eventos_filtrado=  this._filtro_lista != null ? this.filtrar_lista(this.filtro_lista): this.eventos;
+    // caso exista alguma coisa no filtro ele faz a consulta no arra de eventos(que permanece intacto)
+    // caso não ele pega novamente todo o array de eventos
   }
   public GetEventos(): void {
     // SUBSCRIBE NÓS TEMOS QUE NOS INSCREVER
@@ -47,7 +49,7 @@ export class EventosComponent implements OnInit {
   public filtrar_lista(conteudo : string): any {
 
      return  this.eventos.filter(
-          evento=> evento.tema.includes(conteudo) || evento.local.includes(conteudo)
+          evento=> evento.tema.toLowerCase().includes(conteudo.toLowerCase()) || evento.local.toLowerCase().includes(conteudo.toLowerCase())
 
      );
 
