@@ -1,0 +1,131 @@
+
+
+<app-titulo titulo="teste"></app-titulo> <!--CHAMANDO O DECORATOR DE ENTRADA(INPUT) ATRIBUINDO UM VALOR PARA A VARIAVEL
+TAMBÉM PODE SER UMA PROPERTIE BINDING DENTRO DE []-->
+
+  <div action="" method="" class="form-inline">
+    <div class="form-group mb-2">
+      <label class="mr-2" for="filtro">
+         Filtro
+      </label>
+      <input id="filtro"
+      type="text"
+      class="form-control mr-2"
+      placeholder="buscar"
+      [(ngModel)] = "filtroDeLista"
+      >
+    </div>
+  </div>
+  <div>
+    <table class="table table-responsive-lg  table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>
+            Id
+          </th>
+          <th class="text-center">
+          <button class="btn  btn-sm  btn-outline-light " (click)="ocultarImagem = !ocultarImagem"
+            data-toggle="collapse" data-target = ".navegacao" >
+            <i  class="{{(ocultarImagem ? 'fa-solid fa-eye fa-lg ' : 'fa-solid fa-eye-slash fa-lg')}}"></i>
+            {{(ocultarImagem ? 'Exibir' : 'Ocultar')}}
+            </button>
+          </th>
+          <th>
+            Tema
+          </th>
+          <th>
+            Local
+          </th>
+          <th>
+           Data
+          </th>
+          <th>
+            QtdPessoas
+          </th>
+          <th>
+            Lote
+          </th>
+          <th>
+            Opções
+          </th>
+
+        </tr>
+
+      </thead>
+      <tbody *ngIf="eventosFiltrado  && eventosFiltrado.length">
+
+        <tr  *ngFor="let evento of eventosFiltrado">
+          <td>
+            {{evento.id}}
+          </td>
+          <td>
+           <!--../../assets/{{evento.imagemUrl}} ACESSO MANUAL POR PASTA-->
+           <!--
+            FORMTAÇÃO INLINE DO WITDTH
+             <img src="/assets/{{evento.imagemUrl}}" width="150px">
+           -->
+           <!-- FORMATAÇÃO COM PROPERTIES BIND (PROPRIEDADES DE ASSOCIAÇÃO )
+            OU SEJA JA FAZEM A INTERPOLAÇÃO E O BINDING PRA VOCE
+            COMO AQUI JA INDICAMOS QUE É UM PX BASTA PASSARMOS O NUMERO
+               OU SÓ O NUMERO OU A VARIAVEL
+           -->                                                                       <!-- [collapse]Propriedade de binding(associação)-->
+           <img src="/assets/{{evento.imagemUrl}}" class="navegacao ml-auto mr-auto collapse navbar-collapse" [collapse]="ocultarImagem" [isAnimated]="true" [style.width.px]="larguraImagem"  [style.margin.px]="margemImagem">
+            <!--trabalhando com a url http://localhost:4200/...-->
+          </td>
+          <td>
+            {{evento.tema}}
+          </td>
+          <td>
+            {{evento.local}}
+          </td>
+          <td>
+            {{evento.dataEvento  | DateTimeFormat}} <!--USANDO NOSSO PRIMEIRO PIPE(FILTRO)-->
+          </td>
+          <td>
+            {{evento.qtdPessoas}}
+          </td>
+          <td>
+            {{evento.lotes[0].nome}}
+          </td>
+          <td >
+            <button class="btn btn-sm btn-primary mr-2 mb-2" tooltip="Editar">
+              <i class="fa fa-edit"></i>
+              Editar
+            </button>
+            <button class="btn btn-sm btn-danger mb-2" tooltip="Excluir" (click)="OpenModal(template)">
+              <i class="fa fa-trash"></i>
+              Excluir
+            </button>
+          </td>
+
+         </tr>
+
+
+        </tbody>
+        <tfoot *ngIf="!eventosFiltrado.length">
+           <tr>
+            <td colspan="7" class="text-center"><strong>Não há itens</strong></td>
+           </tr>
+        </tfoot>
+
+    </table>
+
+  </div>
+
+
+<!--
+COMO A INTERPOLAÇÃO E O BIND TRABALHAM ATRAVÉS DO PIPELINE(FILTRO)
+PROPRIEDADE PARA EXBIR TODOS OS OBJETOS JSON DENTRO DO OBJETO Eventos DE UMA VEZ NA TELA
+
+{{eventos | json}}
+-->
+
+<!--DIRETIVA VINDO DO PROPRIO ANGULAR -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Desja realmente excluir?</p>
+    <button type="button" class="btn btn-danger mr-2" (click)="Confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="Cancel()" >Não</button>
+  </div>
+</ng-template>
+

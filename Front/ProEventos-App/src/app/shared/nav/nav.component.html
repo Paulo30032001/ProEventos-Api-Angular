@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100% !important;">
+
+  <!--Logo-->
+  <a href="#!" class="navbar-brand">ProEventos</a> <!--aqui diz que ao clicar troca o valor de colapse --->
+  <button class="navbar-toggler" (click)="OcultarConteudoDropNav = !OcultarConteudoDropNav" data-toggle="collapse"
+    data-target="#navegacao">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <!--OU SEJA COMO LA ESTÁ TRUE MESMO AO COLAPSAR ELE AINDA NÃO MOSTRA ESSE CONTEUDO-->
+  <div id="navegacao" [collapse]="OcultarConteudoDropNav" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <!--DIRETIVA QUE VAI DIRECIONAR PARA AS ROTAS MAPEADAS PELO OBJETO(CLASSE ROUTES)-->
+                                                      <!--DIRETIVA QUE VAI RASTREAR A ROTA E SABER SE ESTÁ ATIVA-->
+                                                      <!--E APLICAR UMA CLASSE SOBRE ELA-->
+        <a routerLink="home" class="nav-link active" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="eventos" class="nav-link" routerLinkActive="active">Eventos</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="palestrantes" class="nav-link" routerLinkActive="active">Palestrantes</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="contatos" class="nav-link" routerLinkActive="active">Contatos</a>
+      </li>
+
+    </ul>
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item dropdown" dropdown container="body">
+        <!--TUDO USADO AQUI SEM EM AZUL OU FORA DE ASPAS SÃO DIRETIVAS
+          (RECURSOS DO ANGULAR PARA MANIPULAR O HTML )
+        -->
+        <!--OPÇÃO PARA CLICAR PARA ACIONAR O MENU DROPDOWN (dropdownToggle)-->
+                                           <!-- REMOVEMOS O HREF POIS AO CLICAR NELE COMO É UN ENDEREÇO INVALIDO ELE VAI PARA DASHBOARD
+                                            COMO NÃO TEM O HREF ELE NÃO FICA COM A MÃOZINHA
+                                            AO PASSAR O MOUSE EM CIMA ENTÃO FIZEMOS NA MÃO-->
+        <a class="dropdown-toggle nav-link"style="cursor: pointer;" dropdownToggle aria-controls="mostrar_ocultar">Paulo Eleison</a>
+        <div *dropdownMenu class="dropdown-menu" id="mostrar_ocultar">
+          <a  routerLink="perfil" routerLinkActive="active" class="dropdown-item">Perfil</a>
+          <a href="#" class="dropdown-item">Sair</a>
+
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+
+</nav>
+
+

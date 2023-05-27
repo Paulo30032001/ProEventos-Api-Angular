@@ -1,6 +1,10 @@
 <app-nav></app-nav>
-
 <div class="container">
-  <app-eventos></app-eventos>
+  <!--DIRETIVA ONDE SERÃO DIRECIONADO AS VIEWS TEMPLEATES MAPEADAS PELO OBJETO(CLASSE)-->
+  <router-outlet></router-outlet>
 </div>
 
+
+<ngx-spinner name="carregando">
+  <p style="font-size: 20px; color: white;" class="mt-5" >Carregando...</p>
+</ngx-spinner>

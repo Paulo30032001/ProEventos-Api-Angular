@@ -33,9 +33,11 @@ namespace ProEventos.API
         {
             // UseSqlite=é um DbContextOptionsBuilder então temos criar alguem que recebe esse DbContextOptionsBuilder que no casso é o nosso DbContextOptions(ou DbContextOptionsBuilder tanto faz) ele vai determinar as nossas tabelas no banco 
             services.AddDbContext<ProEventosContext>(
-                Options =>
+               Options =>
                  Options.UseMySQL(Configuration.GetConnectionString("ProEventos.APIContext")) // por enquanto vamos deixar sem conexão
-                 )
+
+            )
+                
                  ;    //  ADICIONAMOS O CONTEXTO 
 
             //PRIMEIRO INTERFACE DEPOIS A CLASSE QUE A IMPLEMENTA(CUMPRE O CONTRATO)

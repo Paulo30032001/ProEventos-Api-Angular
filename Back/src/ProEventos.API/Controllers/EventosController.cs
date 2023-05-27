@@ -88,8 +88,8 @@ namespace ProEventos.API.Controllers
         }
           
     
-        //rota:https://localhost:5001/api/Evento/{tema}/tema
-        [HttpGet("{tema}/tema")]
+        //rota:https://localhost:5001/api/Evento/tema/{tema}
+        [HttpGet("tema/{tema}")]
         public async Task<IActionResult> GetByTema(string tema)
         {
             try
