@@ -75,7 +75,6 @@ export class EventosComponent implements OnInit {
       // funções anonimas () =>{}
       next: (Eventos: Evento[]) => { // representa o corpo do response
         this.eventos = Eventos; this.eventosFiltrado = Eventos;
-        alert(JSON.stringify(this.eventosFiltrado))
         this.toastrService.success("Eventos carregados", "Sucesso");
         this.ngxSpinnerService.hide("carregando");
       },

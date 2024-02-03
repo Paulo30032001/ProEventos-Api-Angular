@@ -9,8 +9,11 @@ import { Component, Input,OnInit } from "@angular/core"; // O DECORATOR(METADADO
   styleUrls: ["./titulo.component.scss"]
 })
 export class TituloComponent implements OnInit {
-   @Input() titulo :string; // PARA O DECORATOR DE ENTRADA NÃO SE DEVE USAR MODIFICADORES DE ACESSO
+   @Input() titulo  :string ; // PARA O DECORATOR DE ENTRADA NÃO SE DEVE USAR MODIFICADORES DE ACESSO
    // POIS COMO É DE ENTRADA DEVE SER SEMPRE PUBLICO
+   @Input() subtitulo : string = '2024';
+   @Input() classeFontAwesome : string = 'fa fa-user';
+   @Input() listar : boolean = true;
   constructor() { }
 
   ngOnInit(): void {
