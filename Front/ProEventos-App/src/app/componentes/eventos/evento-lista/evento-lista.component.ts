@@ -1,17 +1,16 @@
 import { Component, OnInit, TemplateRef } from "@angular/core"; // FORMA VARIOS OBJETOS QUE VEM DO MESMO LOCAL
-import { EventoService } from "../../services/Evento.service"; // IMPORTANTO EVENTOSERVICE
-import { Evento } from "../../models/Evento"; // IMPORTANDO A CLASSE DE ENVENTO PARA TIPAR AS VARIAVEIS E METODOS
+import { EventoService } from "../../../services/Evento.service"; // IMPORTANTO EVENTOSERVICE
+import { Evento } from "../../../models/Evento"; // IMPORTANDO A CLASSE DE ENVENTO PARA TIPAR AS VARIAVEIS E METODOS
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal"; // IMPORTADO PARA CONSEGUIR DISPARAR O MODAL(JANELA)
 import { ToastrService } from "ngx-toastr";// IMPORTADO PARA CONSEGUIR EXIBIR OS ALERTAS FORMATADOS (COMO NOTIFICAÇÕES)
 import { NgxSpinnerService } from "ngx-spinner";  //E A DIRETIVA (RECURSO DO ANGULAR PARA MANIPULAR O HTML) DE NGX-SPINNER
+
 @Component({
-  selector: "app-eventos",
-  templateUrl: "./eventos.component.html",
-  styleUrls: ["./eventos.component.scss"],
-  /* providers: [EventoService]  2 MANEIRA DE SE USAR A INJEÇÃO DE DEPENDENCIA
-    DECLARANDO NA PROPRIA CLASE */
+  selector: 'app-evento-lista',
+  templateUrl: './evento-lista.component.html',
+  styleUrls: ['./evento-lista.component.scss']
 })
-export class EventosComponent implements OnInit {
+export class EventoListaComponent implements OnInit {
   public eventos: Evento[] = [];
   public eventosFiltrado: Evento[] = [];
   public larguraImagem = 150; // px
@@ -134,5 +133,4 @@ export class EventosComponent implements OnInit {
     this.modalRef.hide(); // FECHANDO
     this.toastrService.warning("Cancelado", "Ok");
   }
-
 }

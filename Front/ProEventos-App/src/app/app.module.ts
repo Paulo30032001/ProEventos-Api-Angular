@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
-import { EventosComponent } from "./componentes/eventos/eventos.component";
+import { EventosComponent } from "./componentes/eventos/eventos/eventos.component";
 import {HttpClientModule} from "@angular/common/http";// IMPORTANDO O MODULO HTTP PARA REQUISIÇÕES;
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"; //Importado para o uso do ngx-boostrap e bootstrap
 import { NavComponent } from "./shared/nav/nav.component";
@@ -28,7 +28,9 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
                                              //E A DIRETIVA (RECURSO DO ANGULAR PARA MANIPULAR O HTML) DE NGX-SPINNER
 
 
-import { AppRoutingModule } from "./app-routing.module"; // IMPORTANDO  O MODULE PARA O USO DE APP-ROUTING-MODULE
+import { AppRoutingModule } from "./app-routing.module";// IMPORTANDO  O MODULE PARA O USO DE APP-ROUTING-MODULE
+import { EventoListaComponent } from './componentes/eventos/evento-lista/evento-lista.component';
+import { EventoDetalheComponent } from './componentes/eventos/evento-detalhe/evento-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,12 @@ import { AppRoutingModule } from "./app-routing.module"; // IMPORTANDO  O MODULE
     NavComponent,
     DateTimeFormatPipe,
     TituloComponent, // DECLARADO O NOSSO PRIMEIRO PIPE(FILTRO)
-      PalestrantesComponent, ContatosComponent, DashboardComponent, PerfilComponent
+    PalestrantesComponent,
+    ContatosComponent,
+    DashboardComponent,
+    PerfilComponent,
+    EventoListaComponent,
+    EventoDetalheComponent
    ],
   imports: [
     BrowserModule,

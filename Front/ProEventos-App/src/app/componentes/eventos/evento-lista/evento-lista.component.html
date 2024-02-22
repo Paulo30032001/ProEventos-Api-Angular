@@ -1,17 +1,8 @@
-<div class="">
-  <!--CHAMANDO O DECORATOR DE ENTRADA(INPUT) ATRIBUINDO UM VALOR PARA A VARIAVEL
-    TAMBÉM PODE SER UMA PROPERTIE BINDING DENTRO DE []-->
-
-  <app-titulo
-    titulo="Eventos"
-    classeFontAwesome="fa fa-calendar-alt display-4"
-  ></app-titulo>
-</div>
 
 <div class="card rounded shadow-sm p-3">
-  <div class="">
+  <div>
     <div class="d-flex">
-      <div class="flex-fill">
+      <div class="flex-fill">  <!--ocupa 100% do espaço até um proximo item-->
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" for="filtro">Filtro</div>
@@ -28,7 +19,7 @@
       </div>
 
       <div class="ml-2">
-        <a class="d-flex btn btn-outline-primary">
+        <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
           <i class="fa fa-plus-circle my-1"></i>
           <span class="d-none d-sm-block ml-1">Novo</span>
         </a>
@@ -59,8 +50,8 @@
             </button>
           </th>
           <th>Tema</th>
-          <th>Local</th>
-          <th class="d-none d-md-table-cell">Data</th>
+          <th class="d-none d-md-table-cell">Local</th>
+          <th >Data</th>
           <th class="d-none d-md-table-cell">QtdPessoas</th>
           <th class="d-none d-md-table-cell">Lote</th>
           <th>Opções</th>
@@ -96,10 +87,10 @@
           <td>
             {{ evento.tema }}
           </td>
-          <td>
+          <td class="d-none d-md-table-cell">
             {{ evento.local }}
           </td>
-          <td class="d-none d-md-table-cell">
+          <td >
             {{ evento.dataEvento | DateTimeFormat }}
             <!--USANDO NOSSO PRIMEIRO PIPE(FILTRO)-->
           </td>
@@ -110,11 +101,9 @@
             {{ evento.lotes.leght > 0 ? evento[0].lotes[0].nome : "" }}
           </td>
           <td>
-            <button class="btn btn-md btn-primary mr-2 mb-2" tooltip="Editar">
-              <i class="fa fa-edit"></i>
-            </button>
+
             <button
-              class="btn btn-md btn-danger mb-2"
+              class="btn btn-lg btn-danger mb-2 "
               tooltip="Excluir"
               (click)="OpenModal(template)"
             >
@@ -132,6 +121,8 @@
       </tfoot>
     </table>
   </div>
+
+
 </div>
 
 <!--
