@@ -15,11 +15,11 @@ export class TituloComponent implements OnInit {
   @Input() subtitulo: string = '2024';
   @Input() classeFontAwesome: string = 'fa fa-user';
   @Input() listar: boolean = true;
-  constructor(private Rota: Router) {} //Objeto para manipular as rotas
+  constructor(private rota: Router) {} //Objeto para manipular as rotas
 
   ngOnInit(): void {}
 
   public Listar(): void {
-    this.Rota.navigate([`/${this.titulo.toLowerCase()}/lista`]); //redirecionado para  as paginas que listam
+    this.rota.navigate([`/${this.titulo.toLowerCase()}/lista`]); //redirecionado para  as paginas que listam
   }
 }

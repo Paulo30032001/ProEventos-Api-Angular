@@ -17,6 +17,8 @@ const routes: Routes = [
   // DEFINIMOS O ARRAY QUE CONTEM AS ROTAS
   //CAMINHO(APELIDO COMO VAI SER INSERIDO NO ROUTERLINK(DIRETIVA QUE VAI ENCAMINHAR PARA AS ROTAS MAPEADAS PELO OBJETO ROUTES))
 
+  {path : 'eventos',redirectTo: 'eventos/lista'}, // Redirecionando a rota eventos/lista para quando for chamado só eventos
+
   {
     path: 'eventos',
     component: EventosComponent, //COMPONENTE PAI
@@ -24,7 +26,7 @@ const routes: Routes = [
     children: [
       // TODAS AS ROTAS CRIADAS AQUI SÃO CHAMADAS DENTRO DO COMPONENTE EVENTOS
       { path: 'lista', component: EventoListaComponent }, // A ROTA SERÁ EVENTOS/LISTA
-      { path: 'detalhe:id', component: EventoDetalheComponent }, // :id defini o parametro e seu nome
+      { path: 'detalhe/:id', component: EventoDetalheComponent }, // :id defini o parametro e seu nome
       { path: 'detalhe', component: EventoDetalheComponent },
     ],
   }, // COMPONENTE É O COMPONENTE QUE VAI SER ENCAMINHADO

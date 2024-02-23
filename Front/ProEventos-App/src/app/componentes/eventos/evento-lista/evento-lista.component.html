@@ -28,7 +28,7 @@
   </div>
 
   <div class="mt-2">
-    <table class="table table-responsive-lg table-striped">
+    <table class="table table-responsive-lg table-striped table-hover">
       <thead class="thead-dark">
         <tr>
           <th>Id</th>
@@ -58,7 +58,7 @@
         </tr>
       </thead>
       <tbody *ngIf="eventosFiltrado && eventosFiltrado.length">
-        <tr *ngFor="let evento of eventosFiltrado">
+        <tr *ngFor="let evento of eventosFiltrado" (click)="Editar(evento.id)">
           <td>
             {{ evento.id }}
           </td>
